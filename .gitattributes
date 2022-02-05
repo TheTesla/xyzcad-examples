@@ -1,0 +1,9 @@
+furniture-handle.stl filter=lfs diff=lfs merge=lfs -text
+nut.stl filter=lfs diff=lfs merge=lfs -text
+radiator-towel-holder.stl filter=lfs diff=lfs merge=lfs -text
+screw.stl filter=lfs diff=lfs merge=lfs -text
+furniture-handle_0.15mm_PLA_MK3S_2h30m.gcode filter=lfs diff=lfs merge=lfs -text
+nut_0.1mm_PLA_MK3S_49m.gcode filter=lfs diff=lfs merge=lfs -text
+screw_0.1mm_PLA_MK3S_2h2m.gcode filter=lfs diff=lfs merge=lfs -text
+screw_0.1mm_PLA_MK3S_2h3m.gcode filter=lfs diff=lfs merge=lfs -text
+screw_0.png filter=lfs diff=lfs merge=lfs -text
