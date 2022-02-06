@@ -13,9 +13,9 @@ def screwprofile(x):
 
 @jit
 def f(x,y,z):
-    ang = math.atan2(y,x)
+    ang = -math.atan2(y,x)
     r = screwprofile((3*z+ang+math.pi)%(2*math.pi)) + (x**2 + y**2)**0.5
-    if r < 10:
+    if r < 10.1:
         return False
     if z < 0:
         return False
