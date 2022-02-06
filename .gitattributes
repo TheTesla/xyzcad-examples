@@ -7,3 +7,6 @@ nut_0.1mm_PLA_MK3S_49m.gcode filter=lfs diff=lfs merge=lfs -text
 screw_0.1mm_PLA_MK3S_2h2m.gcode filter=lfs diff=lfs merge=lfs -text
 screw_0.1mm_PLA_MK3S_2h3m.gcode filter=lfs diff=lfs merge=lfs -text
 screw_0.png filter=lfs diff=lfs merge=lfs -text
+nut_0.2mm_PLA_MK3S_22m_+0.1mm.gcode filter=lfs diff=lfs merge=lfs -text
+nut_0.2mm_PLA_MK3S_22m.gcode filter=lfs diff=lfs merge=lfs -text
+screw_0.2mm_PLA_MK3S_1h1m.gcode filter=lfs diff=lfs merge=lfs -text
