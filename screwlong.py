@@ -17,6 +17,11 @@ def f(x,y,z):
     rg = 6
     if z < 0:
         return False
+    if z < 35:
+        r = (x**2 + y**2)**0.5
+        if  rg - 0.1 > r:
+            return True
+
     if z < 10:
         r = (x**2 + y**2)**0.5
         phi = math.atan2(y, x)
