@@ -29,7 +29,7 @@ def f(x,y,z):
         return False
     if y > 20:
         return False
-    ang = -math.atan2((z-zf),x)
+    ang = +math.atan2((z-zf),x)
     r = screwprofile((3*y+ang+math.pi)%(2*math.pi)) + (x**2 + (z-zf)**2)**0.5
     if r < rg + 0.1:
         return False
