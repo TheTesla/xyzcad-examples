@@ -9,30 +9,41 @@ import numpy as np
 
 @jit
 def f(x,y,z):
-    rc = 3
-    rf = 10
-    zf = 20
-    zn = 5
+    ls = 85
+    rc = 5
+    rf = 15
+    zf = 30
+    zn = 7
     yf = 15
-    w = 40
-    rg = 6
+    w = 75
+    wi = 50
+    rg = 10
+    h = 30
+    hff = 10
     if x < -w:
         return False
     if x  > w:
         return False
     if y < -rc:
         return False
-    if y > 20:
+    if y > ls:
+        return False
+    if ((rg-0.1)**2 > (z-zf)**2 + (x-w/2)**2):
+        return True
+    if y < hff:
+        if (rf**2 > (z-zf)**2 + (x-w/2)**2):
+            return True
+    if y > h:
         return False
     ang = -math.atan2((z-zf),x)
-    r = 0.3 + (x**2 + (z-zf)**2)**0.5
-    if r < rg + 0.1:
+    r = (x**2 + (z-zf)**2)**0.5
+    if r < rg:
         return False
     if (rf**2 > (z-zf)**2 + x**2):
         return True
     if y - abs(z-zn) > 0:
         return False
-    if (1 > (z/(zf-rf))**2 + (x/(w/2))**2):
+    if (1 > (z/(zf-rf))**2 + (x/wi)**2):
         return False
     if z > 0:
         if (1 > (z/(zf+rf))**2 + (x/w)**2):
