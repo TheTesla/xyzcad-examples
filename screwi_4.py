@@ -13,9 +13,10 @@ def screwprofile(x):
 
 @jit
 def f(x,y,z):
-    l = 10
+    l = 30
     rg = 10
-    ra = 4
+    ra = 5
+    f = 2
     if z < 0:
         return False
     phi = math.atan2(y, x)
@@ -24,6 +25,8 @@ def f(x,y,z):
         return False
     if z > l:
         return False
+    rg = rg + l - z - f if z > l - f else rg
+    rg = rg + z - f if z < f else rg
     ang = -math.atan2(y,x)
     r = 2*screwprofile((4*(2*math.pi/6*1*z/4+ang+math.pi))%(2*math.pi)) + (x**2 + y**2)**0.5
     if r < rg:

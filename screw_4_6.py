@@ -19,6 +19,7 @@ def f(x,y,z):
     rr = 14
     rf = rg+3
     hh = 12
+    f = 2
     if z < 0:
         return False
     if z < hh:
@@ -31,12 +32,8 @@ def f(x,y,z):
         else:
             return False
     if z > l:
-        r = (x**2 + y**2)**0.5
-        if r > rg - (z-l):
-            return False
-
-    if z > l+3:
         return False
+    rg = rg + l - z - f if z > l - f else rg
     ang = -math.atan2(y,x)
     r = 2*screwprofile((4*(2*math.pi/6*1*z/4+ang+math.pi))%(2*math.pi)) + (x**2 + y**2)**0.5
     if r < rg:
