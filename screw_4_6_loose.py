@@ -13,8 +13,8 @@ def screwprofile(x):
 
 @jit
 def f(x,y,z):
-    l = 47
-    rg = 10
+    l = 77
+    rg = 10 -0.2
     ra = 10
     rr = 14
     rf = rg+3
@@ -42,5 +42,5 @@ def f(x,y,z):
 
     return False
 
-render.renderAndSave(f, 'screw_4_6.stl', 0.1)
+render.renderAndSave(f, 'screw_4_6_loose.stl', 0.1)
 

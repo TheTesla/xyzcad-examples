@@ -13,34 +13,26 @@ def screwprofile(x):
 
 @jit
 def f(x,y,z):
-    l = 47
-    rg = 10
-    ra = 10
-    rr = 14
-    rf = rg+3
-    hh = 12
+    l = 10
+    rg = 10 - 0.2
+    ra = 5
     f = 2
+    mf = 1
     if z < 0:
         return False
-    if z < hh:
-        r = (x**2 + y**2)**0.5
-        if r < rr - (hh - z):
-            return True
-        phi = math.atan2(y, x)
-        if r * math.cos(((phi*180/math.pi) %60 -30)/180*math.pi) < ra:
-            return True
-        else:
-            return False
+    phi = math.atan2(y, x)
+    r = (x**2 + y**2)**0.5
+    if r * math.cos(((phi*180/math.pi) %60 -30)/180*math.pi) < ra:
+        return False
     if z > l:
         return False
-    rg = rg + l - z - f if z > l - f else rg
+    rg = rg + mf*(l - z - f) if z + f > l else rg
+    rg = rg + mf*(z - f) if z - f < 0 else rg
     ang = -math.atan2(y,x)
     r = 2*screwprofile((4*(2*math.pi/6*1*z/4+ang+math.pi))%(2*math.pi)) + (x**2 + y**2)**0.5
     if r < rg:
         return True
-
-
     return False
 
-render.renderAndSave(f, 'screw_4_6.stl', 0.1)
+render.renderAndSave(f, 'screwi_4_loose_short.stl', 0.1)
 

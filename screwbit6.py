@@ -13,7 +13,7 @@ def screwprofile(x):
 
 @jit
 def f(x,y,z):
-    l = 40
+    l = 80
     ra = 5 - 0.2
 
     if z < 0:
