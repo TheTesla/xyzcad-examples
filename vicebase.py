@@ -13,7 +13,7 @@ def screwprofile(x):
 
 
 @jit
-def screw(x,y,z,rg):
+def screw4(x,y,z,rg):
     ang = -math.atan2(y,x)
     r = 2*screwprofile((4*(2*math.pi/6*1*z/4+ang+1.25*math.pi))%(2*math.pi)) + (x**2 + y**2)**0.5
     return r < rg
@@ -42,10 +42,12 @@ def f(x,y,z):
     hbase = 30
     hclamp = 30
     rg = 10.1
+    ra = rg * 1.2
     rb = 9.5
     rguide = 10
     re = 3
     sguide = 30
+    d = sguide
     dguide = 5
     fguide = 0.2
 
@@ -58,8 +60,19 @@ def f(x,y,z):
     if rb **2 > x**2 + y**2:
         return False
 
+    if abs(x) > wguide/2 - sguide/2 or abs(y) > hbase/2:
+        if ra**2 > ((x+d/2)%d-d/2)**2 + ((y+d/2)%d-d/2)**2 + (z%d-d/2)**2:
+            return False
 
-    if screw((x+sguide/2)%sguide-sguide/2,-(z)%sguide-sguide/2,y-hbase/2,rg):
+    if screw4(z%d-d/2,(y+d/2)%d-d/2,-x-d/2,rg):
+        if abs(x) > wguide/2-sguide/2+dguide:
+            return False
+
+    if screw4((x+sguide/2)%sguide-sguide/2,(y+d/2)%d-d/2,z,rg):
+        if y < hbase/2 or z < lbase - dguide:
+            return False
+
+    if screw4((x+sguide/2)%sguide-sguide/2,-(z)%sguide-sguide/2,y-hbase/2,rg):
         if abs(x) > wguide/4:
             if y < sguide/3:
                 return False
@@ -71,14 +84,15 @@ def f(x,y,z):
 
 
     wprof = (math.cos(2*math.pi*y*fguide) - 1)/2 * dguide
-    wbar = wprof + sguide
+    wbar = wprof/2 + sguide
     hbar = sguide + (math.cos(2*math.pi*x*fguide) - 1)/2 * dguide * (1 if y > 0 else 0)
-    if block((x-sguide*(1 if x>0 else -1),y,z-(lbase+lguide)/2),(wbar,hbar,lbase+lguide),re):
+    if block((x+(wprof/4-sguide)*(1 if x>0 else -1),y,z-(lbase+lguide)/2),(wbar,hbar,lbase+lguide),re):
         return True
 
-    lbar = lbase - (math.cos(2*math.pi*y*fguide) - 1)/2 * dguide \
+    lbar = lbase -  (math.cos(2*math.pi*x*fguide) + 1)/2 * \
+                    (math.cos(2*math.pi*y*fguide) - 1)/2 * dguide \
                     * (1 if y > hbase/2 else 0) * (1 if z > lbase/2 else 0)
-    if block((x,y-hclamp/2,z-lbase/2),(w+wprof,hbase+hclamp,lbar),re):
+    if block((x,y-hclamp/2,z-lbase/2),(w,hbase+hclamp,lbar),re):
         return True
 
 

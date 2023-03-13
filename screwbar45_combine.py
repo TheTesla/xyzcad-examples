@@ -4,7 +4,6 @@ from xyzcad import render
 from numba import jit
 import math
 import numpy as np
-import sys
 
 @jit
 def screwprofile(x):
@@ -30,6 +29,8 @@ def block(p, s, r=1):
                  +(y - ((y if y < w/2 else w/2) if y > -w/2 else -w/2))**2\
                  +(z - ((z if z < h/2 else h/2) if z > -h/2 else -h/2))**2
 
+
+
 @jit
 def bar(x,y,z,d,xp,yp,zp,xs,ys,zs,r=3):
     xp = xp - xs/2
@@ -38,24 +39,14 @@ def bar(x,y,z,d,xp,yp,zp,xs,ys,zs,r=3):
     return block((x-xp*d,y-yp*d,z-zp*d),(xs*d,ys*d,zs*d),r)
 
 
-w, l, h = sys.argv[1:]
-
-w = float(w)
-l = float(l)
-h = float(h)
-
 @jit
 def f(x,y,z):
     rg = 10.1
-    rb = rg - 0.6
     ra = rg*1.3
     d = 2*15
-    pd = 1
-
-    p = (-d*h-z+pd if -z>d*h-pd else 0) if -z > pd else z+pd
-    if (rb+p)**2 > (x+d/2*w)**2 + (y+d/2*l)**2:
-        return False
-
+    w = 2
+    l = 2
+    h = 1
     if ra**2 > (x%d-d/2)**2 + (y%d-d/2)**2 + (z%d-d/2)**2:
         return False
     if screw(x%d-d/2,y%d-d/2,z,rg):
@@ -66,13 +57,14 @@ def f(x,y,z):
         return False
 
 
-    if not bar(x,y,z,d,0,0,0,w,l,h):
-        return False
+    if bar(x,y,z,d,0,0,0,2,1,1):
+        return True
+    if bar(x,y,z,d,0,1,0,1,2,1):
+        return True
+    if bar(x,y,z,d,1,1,0,2,1,1):
+        return True
 
+    return False
 
-
-    return True
-
-render.renderAndSave(f,
-        f'screwbar4_45_bearing_{w:02.0f}_{l:02.0f}_{h:02.0f}.stl', 0.1)
+render.renderAndSave(f, f'screwbar45_combine.stl', 0.5)
 
