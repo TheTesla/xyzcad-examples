@@ -42,12 +42,20 @@ def fuzzblockround(p,s):
     d = (min(w-x, w+x, 0)**2 + min(l-y, l+y, 0)**2 + min(h-z, h+z, 0)**2)**0.5
     return d
 
+@jit
+def fuzzcylinderround(p,h,r):
+    x = p[0]
+    y = p[1]
+    z = p[2]
+    rc = (x**2 + y**2)**0.5
+    d = (min(r-rc, r+rc, 0)**2 + min(h-z, h+z, 0)**2)**0.5
+    return d
 
 
 
 @jit
 def f(x,y,z):
-    if 130 > fuzzblockround((x,y,z),(50,5,5)) * fuzzblockround((x,y,z),(10,50,10)):
+    if 130 > fuzzcylinderround((x,y,z),50,5)) * fuzzblockround((x,y,z),(10,50,10)):
         return True
 
     return False
