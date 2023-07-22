@@ -13,7 +13,7 @@ def screwprofile(x):
 
 @jit
 def f(x,y,z):
-    l = 30
+    l = 30 -0.2
     rg = 10.1
     ri = rg - 0.6
     s = rg*2/3+0.2

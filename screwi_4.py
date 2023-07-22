@@ -4,18 +4,21 @@ from xyzcad import render
 from numba import jit
 import math
 import numpy as np
+import sys
 
 @jit
 def screwprofile(x):
     x = x / (2*math.pi)
     return min(max(3*(x if x < 0.5 else 1-x), 0.3), 1.2)
 
+l = sys.argv[1]
+
+l = float(l)
 
 @jit
 def f(x,y,z):
-    l = 30
     rg = 10
-    ra = 5
+    ra = 5 - 0.1
     f = 2
     if z < 0:
         return False
@@ -33,5 +36,5 @@ def f(x,y,z):
         return True
     return False
 
-render.renderAndSave(f, 'screwi_4.stl', 0.1)
+render.renderAndSave(f, f'screwi_4_{l:02.0f}.stl', 0.1)
 

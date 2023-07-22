@@ -79,5 +79,5 @@ def f(x,y,z):
 
     return True
 
-render.renderAndSave(f, f'screwbar4_45_{l:02.0f}_{w:02.0f}_{h:02.0f}.stl', 0.1)
+render.renderAndSave(f, f'screwbar4_45_{l:02.0f}_{w:02.0f}_{h:02.0f}.stl', 0.3)
 

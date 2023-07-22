@@ -13,7 +13,7 @@ def screwprofile(x):
 
 @jit
 def f(x,y,z):
-    l = 177
+    l = 172
     lh = 20
     ld = 7
     ls = 30

@@ -32,48 +32,6 @@ def block(p, s, r=1):
 
 
 @jit
-def fuzzsphere(p,r=1):
-    x = p[0]
-    y = p[1]
-    z = p[2]
-    return x**2 + y**2 + z**2 - r**2
-
-@jit
-def fuzzblock(p,s):
-    x = p[0]
-    y = p[1]
-    z = p[2]
-    l = s[0]
-    w = s[1]
-    h = s[2]
-    xd = x**2 - l**2
-    yd = y**2 - w**2
-    zd = z**2 - h**2
-    return xd**2 + yd**2 + zd**2
-
-
-@jit
-def rSphere(x,y,z):
-    if 0 > x*y+x*z+y*z:
-        return 0
-    return (x+y+z)/2+((x*y+x*z+y*z)/4)**0.5
-
-@jit
-def fuzzblock2(p,s):
-    x,y,z = p
-    l,w,h = s
-    r1 = rSphere(x+l/2,y+w/2,z+h/2)
-    r2 = rSphere(x+l/2,y+w/2,-z+h/2)
-    r3 = rSphere(x+l/2,-y+w/2,z+h/2)
-    r4 = rSphere(x+l/2,-y+w/2,-z+h/2)
-    r5 = rSphere(-x+l/2,y+w/2,z+h/2)
-    r6 = rSphere(-x+l/2,y+w/2,-z+h/2)
-    r7 = rSphere(-x+l/2,-y+w/2,z+h/2)
-    r8 = rSphere(-x+l/2,-y+w/2,-z+h/2)
-    return min(r1,r2,r3,r4,r5,r6,r7,r8)
-
-
-@jit
 def bar(x,y,z,d,xp,yp,zp,xs,ys,zs,r=3):
     xp = xp - xs/2
     yp = yp - ys/2
@@ -83,10 +41,28 @@ def bar(x,y,z,d,xp,yp,zp,xs,ys,zs,r=3):
 
 @jit
 def f(x,y,z):
-    if 2 < fuzzblock2((x,y,z),(60,30,30)):
+    rg = 10.1
+    ra = rg*1.3
+    d = 2*15
+    w = 2
+    l = 2
+    h = 1
+    if ra**2 > (x%d-d/2)**2 + (y%d-d/2)**2 + (z%d-d/2)**2:
+        return False
+    if screw(x%d-d/2,y%d-d/2,z,rg):
+        return False
+    if screw(x%d-d/2,z%d-d/2,-y,rg):
+        return False
+    if screw(z%d-d/2,y%d-d/2,-x,rg):
+        return False
+
+
+    if bar(x,y,z,d,0,0,0,10,1,2):
+        return True
+    if bar(x,y,z,d,0,0,0,10,2,1):
         return True
 
     return False
 
-render.renderAndSave(f, f'fuzzbrick.stl', 0.5)
+render.renderAndSave(f, f'screwbar45_L_2_2_10.stl', 0.2)
 
