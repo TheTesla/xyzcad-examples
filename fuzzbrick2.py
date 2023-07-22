@@ -47,7 +47,7 @@ def fuzzblockround(p,s):
 
 @jit
 def f(x,y,z):
-    if 5 > fuzzblockround((x,y,z),(16,13,13)):
+    if 130 > fuzzblockround((x,y,z),(50,5,5)) * fuzzblockround((x,y,z),(10,50,10)):
         return True
 
     return False
