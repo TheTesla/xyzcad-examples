@@ -55,7 +55,7 @@ def fuzzcylinderround(p,h,r):
 
 @jit
 def f(x,y,z):
-    if 130 > fuzzcylinderround((x,y,z),50,5)) * fuzzblockround((x,y,z),(10,50,10)):
+    if 130 > fuzzcylinderround((x,y,z-80),50,5) * fuzzblockround((x,y,z),(10,50,10)):
         return True
 
     return False
