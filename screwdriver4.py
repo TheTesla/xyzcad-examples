@@ -57,5 +57,5 @@ def f(x,y,z):
 
     return True
 
-render.renderAndSave(f, 'screwdriver4.stl', 0.1)
+render.renderAndSave(f, 'screwdriver4.stl', 0.3)
 

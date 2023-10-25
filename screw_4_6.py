@@ -42,5 +42,5 @@ def f(x,y,z):
 
     return False
 
-render.renderAndSave(f, 'screw_4_6.stl', 0.1)
+render.renderAndSave(f, 'screw_4_6.stl', 0.3)
 

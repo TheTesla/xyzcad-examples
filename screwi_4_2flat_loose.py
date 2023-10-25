@@ -41,5 +41,5 @@ def f(x,y,z):
         return True
     return False
 
-render.renderAndSave(f, 'screwi_4_2flat_loose.stl', 0.1)
+render.renderAndSave(f, 'screwi_4_2flat_loose.stl', 0.3)
 

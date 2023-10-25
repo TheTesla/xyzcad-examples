@@ -48,5 +48,5 @@ def f(x,y,z):
 
     return True
 
-render.renderAndSave(f, 'knurlflat.stl', 0.1)
+render.renderAndSave(f, 'knurlflat.stl', 0.3)
 

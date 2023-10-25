@@ -58,5 +58,5 @@ def f(x,y,z):
 
     return True
 
-render.renderAndSave(f, 'wrench6nice.stl', 0.1)
+render.renderAndSave(f, 'wrench6nice.stl', 0.3)
 

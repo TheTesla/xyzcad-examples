@@ -54,5 +54,5 @@ def f(x,y,z):
 
     return False
 
-render.renderAndSave(f, 'knurlnut.stl', 0.1)
+render.renderAndSave(f, 'knurlnut.stl', 0.3)
 
