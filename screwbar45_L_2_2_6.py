@@ -64,5 +64,5 @@ def f(x,y,z):
 
     return False
 
-render.renderAndSave(f, f'screwbar45_L_2_2_6.stl', 0.1)
+render.renderAndSave(f, f'screwbar45_L_2_2_6.stl', 0.2)
 
