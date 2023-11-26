@@ -63,23 +63,12 @@ def roundChamfer(a, b):
 
 @njit
 def f(x,y,z):
-    a = fuzzblockround((x,y,z),(5,50,5))
-    b = fuzzblockround((x,y,z),(10,10,50))
+    a = fuzzcylinderround((x,y,z),50,5)
+    b = fuzzblockround((x,y,z),(10,50,10))
     c = fuzzblockround((x,y,z),(50,5,5))
 
-    if 5 > roundChamfer(a-1,b-1) or 1 > a or 1 > b:
-    #if 5**2 < (a-10)**2 + (b-10)**2 and 10 > a and 10 > b or (5 > a or 5 > b):
-    #if 5**2 < (a-10)**2 + (b-10)**2 + (c-10)**2 \
-    #        and 10 > a and 10 > b and 10 > c \
-    #        or (5 > a or 5 > b or 5 > c):
+    if 5 < roundChamfer(a,5-b) and (5 > b or 5 > c or 5 > roundChamfer(c-5,b-5)):
         return True
-
-    #if 1 > fuzzblockround((x,y,z),(10,50,10)):
-    #    return True
-    #if 1 > fuzzblockround((x,y,z),(10,10,50)):
-    #    return True
-    #if 130 > fuzzcylinderround((x,y,z-80),50,5) * fuzzblockround((x,y,z),(10,50,10)):
-    #    return True
 
     return False
 
