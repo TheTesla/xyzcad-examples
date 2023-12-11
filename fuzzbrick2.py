@@ -76,14 +76,14 @@ def f(x,y,z):
     a = fuzzcylinderround((x,y,z),70,1) - 5
     b = fuzzblockround((x,y,z),(7,20,7)) - 3
     c = fuzzblockround((x,y,z),(20,5,5)) - 3
-    d = fuzzblockround((x,y,z),(2,2,30)) -8
+    d = fuzzblockround((x,y,z),(2,2,30)) -4
     #d = 0
 
     #if (min(0,b)**2 + min(0,c)**2 + min(0,a-5)**2)**0.5 > 3:
     #rp = (max(0,b)**0.5 + max(0,c)**0.5 + max(0,d)**0.5)**2 -15
     rp = (max(0,b)**0.5 + max(0,c)**0.5)**2 - 5
     ##rl = (max(0,-c)**0.5 + max(0,-b)**0.5 + max(0,a)**0.5)**2 -6
-    rl = (max(0,rp+3)**2 + (-min(0,3+d))**2)**0.5 - 3 if d < -1 else -1
+    rl = (max(0,rp+2)**2 + (-min(0,d))**2)**0.5 - 2 if d < 0 else -1
     #rl = (rp+5)*abs(rp+5) + (d+5)*abs(d+5) - 97  if d < -1 else -1
 
     #if a > -1000 and (0 > rp or 0 > b or 0 > c):
