@@ -101,37 +101,20 @@ def g(x,y,z):
     f = 3
     rh = 8
     r = d/2 -f
-    #a = fuzzblockround(((x+d/2)%d-d/2,(y+d/2)%d-d/2,z),(r,r,3*d/2-f)) - f
+    f2 = 1
+    r2 = d/2 -f2
     a = fuzzblockround((x-d/2,y-d/2,z),(r+d/2,r+d/2,3*d/2-f)) - f
-    b = fuzzblockround((x-d,y,z),(r,r,3*d/2-f)) - f
-    c = fuzzblockround((x,y-d,z),(r,r,3*d/2-f)) - f
+    b = fuzzblockround((x-d,y,z),(r2,r2,3*d/2-f2)) - f2
 
     cx = fuzzcylinderround(((z+d/2)%d-d/2,(y+d/2)%d-d/2,x),5*d,0) - rh
     cy = fuzzcylinderround(((x+d/2)%d-d/2,(z+d/2)%d-d/2,y),5*d,0) - rh
     cz = fuzzcylinderround(((x+d/2)%d-d/2,(y+d/2)%d-d/2,z),5*d,0) - rh
 
     e = f *1.414
-    #solid = (max(0,e-a)**2 + max(0,e-b)**2 + max(0,e-c)**2)**0.5 - e
-    solid = (max(0,e-a)**2)**0.5 - e
+    solid = max(0,e-a) - e
     if (max(0,f-solid)**2 + max(0,f-cz)**2 + max(0,f-cy)**2 + max(0,f-cx)**2
         +max(0,f-b)**2)**0.5 - f < 0:
         return True
-    #if max(-1, a) + max(-1, b) + max(-1, c) < 0:
-    #    return True
-
-    #if (max(0,a+f)**2 + max(0,-cz)**2 + max(0,-cy)**2)**0.5 < f:
-    #    return True
-    #if (max(0,b+f)**2 + (-min(0,cz))**2 + (-min(0,cy))**2)**0.5 < f:
-    #    return True
-    #if (max(0,c+f)**2 + (-min(0,cz) + (-min(0,cy))**2)**2)**0.5 < f:
-    #    return True
-
-    #if (max(0,a)**0.5 + max(0,b)**0.5 + max(0,c)**0.5)**2 < 4*f:
-    #    return True
-    #if (max(0,a)**0.5 + max(0,c)**0.5)**2 < f:
-    #    return True
-    #if (max(0,a)**0.5 + max(0,b)**0.5)**2 < f:
-    #    return True
 
     return False
 
