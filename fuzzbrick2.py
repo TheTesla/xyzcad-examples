@@ -109,6 +109,8 @@ def g(x,y,z):
     cx = fuzzcylinderround(((z+d/2)%d-d/2,(y+d/2)%d-d/2,x),5*d,0) - rh
     cy = fuzzcylinderround(((x+d/2)%d-d/2,(z+d/2)%d-d/2,y),5*d,0) - rh
     cz = fuzzcylinderround(((x+d/2)%d-d/2,(y+d/2)%d-d/2,z),5*d,0) - rh
+    #cz = fuzzblockround((x,y,z),(0,5,200)) - 1
+    #cy = fuzzblockround((x,y,z),(5,0,200)) - 1
 
     e = f *1.414
     solid = (max(0,e-a)**2 + max(0,e-b)**2 + max(0,e-c)**2)**0.5 - e
