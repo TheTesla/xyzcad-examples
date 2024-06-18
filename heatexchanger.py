@@ -33,21 +33,31 @@ def cyl(x,y,z):
 
 @njit
 def f(x,y,z):
-    b = fuzzBlockRound((x,y,z),(55,55,90))
-    c1 =cyl(x-25,y-25,z)-15
-    c2 =cyl(x+25,y+25,z)-15
-    if b - 20 < 0:
-        g = gyroid(x/5+1,y/5,z/5) \
-                + 2.3*max(min((sphere(x-25,y-25,z+100))/50,1),0) \
-                - 2.3*max(min((sphere(x+25,y+25,z+100))/50,1),0) \
-                + 2.3*max(min((sphere(x+25,y+25,z-100))/50,1),0) \
-                - 2.3*max(min((sphere(x-25,y-25,z-100))/50,1),0)
+    roe = 5
+    tw = 5
+    w = 25
+    rh = 10
+    rf = 2
+    sh = 12
+    l = 50
+    dg = 3
+    #if x > y:
+    #    return False
+    b = fuzzBlockRound((x,y,z),(w-roe,w-roe,l-tw))
+    c1 =cyl(x-sh,y-sh,z)-rh
+    c2 =cyl(x+sh,y+sh,z)-rh
+    if b - roe < 0:
+        g = gyroid(x/dg+1,y/dg,z/dg) \
+                + 2.3*max(min((sphere(x-sh,y-sh,z+l))/25,1),0) \
+                - 2.3*max(min((sphere(x+sh,y+sh,z+l))/25,1),0) \
+                + 2.3*max(min((sphere(x+sh,y+sh,z-l))/25,1),0) \
+                - 2.3*max(min((sphere(x-sh,y-sh,z-l))/25,1),0)
         if g > 0.2 or g < -0.2:
             return False
         return True
-    if (max(0,5+b-30)**2+max(0,5-b+20)**2+max(0,5-c1)**2+max(0,5-c2)**2)**0.5 -5 > 0:
+    if (max(0,rf+b-roe-tw)**2+max(0,rf-b+roe)**2+max(0,rf-c1)**2+max(0,rf-c2)**2)**0.5 -rf > 0:
         return False
     return True
 
-render.renderAndSave(f, 'heatexchanger.stl', 0.7)
+render.renderAndSave(f, 'heatexchanger.stl', 0.2)
 
